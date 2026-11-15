@@ -1,0 +1,10 @@
+{
+  "BASEINFO": {
+    "FROM": [
+      "ZSTATMHDR"
+    ],
+    "ASSOCIATED": [
+      "ZI_STATMEVENT"
+    ]
+  }
+}
