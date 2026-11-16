@@ -10,7 +10,7 @@ define root view entity ZI_STATMHDR
       branch               as Branch,
       account              as Account,
       account_dig          as AccountDig,
-      datum                as Datum,
+      statement_date       as StatementDate,
       currency             as Currency,
       @Semantics.amount.currencyCode: 'Currency'
       start_balance        as StartBalance,

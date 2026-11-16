@@ -1,13 +1,15 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Statement Header Projection View'
-define root view entity ZP_STATMHDR as projection on ZI_STATMHDR as StatementHeader
+define root view entity ZP_STATMHDR
+ provider contract transactional_query
+ as projection on ZI_STATMHDR as StatementHeader
 {
     key Uuid,
     Bank,
     Branch,
     Account,
     AccountDig,
-    Datum,
+    StatementDate,
     Currency,
     @Semantics.amount.currencyCode: 'Currency'
     StartBalance,

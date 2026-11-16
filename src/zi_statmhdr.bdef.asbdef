@@ -1,0 +1,59 @@
+managed implementation in class zbp_i_statmhdr unique;
+strict ( 2 );
+
+define behavior for ZI_STATMHDR alias StatementHeader
+persistent table zstatmhdr
+lock master
+authorization master ( instance )
+etag master LocalChangedAt
+{
+  create;
+  update;
+  delete;
+  association _StatementEvent { create; }
+  field ( numbering : managed, readonly ) Uuid;
+  field ( readonly ) CreatedByUser, CreatedAt, ChangedAt, LastChangedByUser, LocalChangedAt;
+
+  mapping for zstatmhdr
+    {
+      Uuid              = uuid;
+      Bank              = bank;
+      Branch            = branch;
+      Account           = account;
+      AccountDig        = account_dig;
+      StatementDate     = statement_date;
+      Currency          = currency;
+      StartBalance      = start_balance;
+      EndBalance        = end_balance;
+      CreatedByUser     = created_by_user;
+      CreatedAt         = created_at;
+      ChangedAt         = changed_at;
+      LastChangedByUser = last_changed_by_user;
+      LocalChangedAt    = local_changed_at;
+    }
+
+}
+
+define behavior for ZI_STATMEVENT alias StatementEvent
+persistent table zstatmevent
+lock dependent by _StatementHeader
+authorization dependent by _StatementHeader
+{
+  update;
+  delete;
+  field ( readonly ) HeaderUuid;
+  association _StatementHeader;
+  field ( numbering : managed, readonly ) Uuid;
+
+  mapping for zstatmevent
+    {
+      Uuid            = uuid;
+      HeaderUuid      = header_uuid;
+      Currency        = currency;
+      Value           = value;
+      Description     = description;
+      LongDescription = long_description;
+      EntryType       = entry_type;
+    }
+
+}

@@ -6,7 +6,7 @@ define view entity ZI_STATMEVENT
   association to parent ZI_STATMHDR as _StatementHeader on $projection.HeaderUuid = _StatementHeader.Uuid
 {
   key uuid             as Uuid,
-  key header_uuid      as HeaderUuid,
+      header_uuid      as HeaderUuid,
       currency         as Currency,
       @Semantics.amount.currencyCode: 'Currency'
       value            as Value,

@@ -3,7 +3,7 @@
 define view entity ZP_STATMEVENT as projection on ZI_STATMEVENT as StatementEvent
 {
     key Uuid,
-    key HeaderUuid,
+    HeaderUuid,
     Currency,
     @Semantics.amount.currencyCode: 'Currency'
     Value,
